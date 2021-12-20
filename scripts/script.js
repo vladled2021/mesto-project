@@ -62,6 +62,11 @@ function createCard(item) {
   const elementTemplate = document.querySelector('#element').content;
   const cardElement = elementTemplate.querySelector('.element').cloneNode(true);
   const elementTrash = cardElement.querySelector('.element__trash');
+
+  cardElement.querySelector('.element__image').src = item.link;
+  cardElement.querySelector('.element__image').alt = item.name;
+  cardElement.querySelector('.element__title').textContent = item.name;
+
   cardElement.querySelector('.element__like').addEventListener('click', function (event) {
     event.target.classList.toggle('element__like_active');
   });
@@ -79,10 +84,11 @@ function createCard(item) {
 
 function handleFormCreateCard(evt) {          // карточки с данными из попапа
   evt.preventDefault();
-  const cardElement = createCard();
-  cardElement.querySelector('.element__image').src = popupInputImageLink.value;
-  cardElement.querySelector('.element__image').alt = popupInputTitle.value;
-  cardElement.querySelector('.element__title').textContent = popupInputTitle.value;
+  const popupPlaceInputsValuesObject = {
+    name: popupInputTitle.value,
+    link: popupInputImageLink.value
+  };
+  const cardElement = createCard(popupPlaceInputsValuesObject);
   elementsSection.prepend(cardElement);
   closePopup(popupTypePlace);
   popupInputTitle.value = '';
@@ -91,10 +97,7 @@ function handleFormCreateCard(evt) {          // карточки с данны�
 
 function addArrayElement(arr) {                // карточки, с данными из массива
   for (let i = 0; i < arr.length; i += 1) {
-    const cardElement = createCard();
-    cardElement.querySelector('.element__image').src = arr[i].link;
-    cardElement.querySelector('.element__image').alt = arr[i].name;
-    cardElement.querySelector('.element__title').textContent = arr[i].name;
+    const cardElement = createCard(arr[i]);
     elementsSection.append(cardElement);
   }
 }
