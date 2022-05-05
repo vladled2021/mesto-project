@@ -4,17 +4,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body>
   <div class="page">
     <header class="header">
-      <img class="header__logo" alt="логотип" src="./images/header-logo.svg">
+      <img class="header__logo" alt="логотип" src="<%=require('./images/header-logo.svg')%>">
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__image" alt="Аватарка" src="./images/Kusto.jpg">
+        <img class="profile__image" alt="Аватарка" src="<%=require('./images/Kusto.jpg')%>">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button" aria-label="Редактировать профиль" class="profile__edit-button">
@@ -36,9 +35,15 @@
       <button type="button" aria-label="Закрыть" class="popup__close-button">
       </button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form" name="form">
-        <input type="text" name="name" required class="popup__input popup__input_type_name">
-        <input type="text" name="job" required class="popup__input popup__input_type_job">
+      <form class="popup__form" name="form" novalidate>
+        <!-- <label class="input-container"> -->
+          <input id="name-input" type="text" name="name" required minlength="2" maxlength="40" class="popup__input popup__input_type_name">
+          <span id="name-input-error" class="error-message"></span>
+        <!-- </label> -->
+        <!-- <label class="input-container"> -->
+          <input id="job-input" type="text" name="job" required minlength="2" maxlength="200" class="popup__input popup__input_type_job">
+          <span id="job-input-error" class="error-message"></span>
+        <!-- </label> -->
         <button type="submit" class="popup__submit">Сохранить</button>
       </form>
     </div>
@@ -48,10 +53,16 @@
       <button type="button" aria-label="Закрыть" class="popup__close-button">
       </button>
       <h2 class="popup__title">Новое место</h2>
-      <form class="popup__form" name="form">
-        <input type="text" placeholder="Название" name="title" required class="popup__input popup__input_type_title">
-        <input type="text" placeholder="Ссылка на картинку" name="image-link" required
-          class="popup__input popup__input_type_image-link">
+      <form class="popup__form" name="form" novalidate>
+        <!-- <label class="input-container"> -->
+          <input id="title-input" type="text" placeholder="Название" minlength="2" maxlength="30" name="title" required class="popup__input popup__input_type_title">
+          <span id="title-input-error" class="error-message"></span>
+        <!-- </label> -->
+        <!-- <label class="input-container"> -->
+          <input id="image-link-input" type="url" placeholder="Ссылка на картинку" name="image-link" required
+            class="popup__input popup__input_type_image-link">
+          <span id="image-link-input-error" class="error-message"></span>
+        <!-- </label> -->
         <button type="submit" class="popup__submit">Создать</button>
       </form>
     </div>
@@ -60,7 +71,7 @@
     <div class="popup__image-container">
       <button type="button" aria-label="Закрыть" class="popup__close-button">
       </button>
-      <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt=" ">
+      <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз">
       <h3 class="popup__image-title"></h3>
     </div>
   </div>
@@ -74,6 +85,11 @@
       </div>
     </div>
   </template>
-  <script src="./scripts/script.js"></script>
+  <!-- <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/validate.js"></script>
+  <script type="module" src="./scripts/card.js"></script>
+  <script type="module" src="./scripts/modal.js"></script>
+  <script type="module" src="./scripts/utils.js"></script> -->
+
 </body>
 </html>
