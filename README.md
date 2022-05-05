@@ -17,4 +17,4 @@
 
 ___
 
-***[Ссылка на проект в github.com](https://vladled2021.github.io/mesto-project/)***
+
