@@ -1,8 +1,8 @@
-import {elementsSection, popupTypePlace, popupTypeImage, popupInputTitle, popupInputImageLink} from "./index.js";
-import {openPopup, closePopup} from './utils.js';
+import {elementsSection, formPlace, popupCardImage, elementTemplate, popupTypePlace, popupTypeImage, popupInputTitle, popupInputImageLink, popupCardImageTitle, popupFormPlace} from "./index.js";
+import {openPopup, closePopup, resetFormPlaceButton} from './utils.js';
+import { disableButton} from "./validate.js";
 
 function createCard(item) {
-  const elementTemplate = document.querySelector('#element').content;
   const cardElement = elementTemplate.querySelector('.element').cloneNode(true);
   const elementTrash = cardElement.querySelector('.element__trash');
 
@@ -17,9 +17,9 @@ function createCard(item) {
     elementTrash.closest('.element').remove();
   });
   cardElement.querySelector('.element__image').addEventListener('click', function (event) {
-   popupTypeImage.querySelector('.popup__image').src = event.target.src;
-   popupTypeImage.querySelector('.popup__image').alt = event.target.alt;
-   popupTypeImage.querySelector('.popup__image-title').textContent = event.target.alt;
+   popupCardImage.src = event.target.src;
+   popupCardImage.alt = event.target.alt;
+   popupCardImageTitle.textContent = event.target.alt;
    openPopup(popupTypeImage);
   });
   return cardElement
@@ -34,8 +34,8 @@ function handleFormCreateCard(evt) {          // карточки с данны�
   //const cardElement = createCard(popupPlaceInputsValuesObject);
   elementsSection.prepend(createCard(popupPlaceInputsValuesObject));
   closePopup(popupTypePlace);
-  popupInputTitle.value = '';
-  popupInputImageLink.value = '';
+  popupFormPlace.reset();
+  resetFormPlaceButton();
 }
 
 function addArrayElement(arr) {                // карточки, с данными из массива

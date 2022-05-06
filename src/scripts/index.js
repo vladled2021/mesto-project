@@ -1,4 +1,5 @@
 import '../pages/index.css';
+export const popups = document.querySelectorAll('.popup');
 const profileEditButton = document.querySelector('.profile__edit-button');                // Попап "Редактировать профиль"
 export const popupTypeProfile = document.querySelector('.popup_type_profile');                   //
 const popupCloseButtonProfile = popupTypeProfile.querySelector('.popup__close-button');   //
@@ -8,6 +9,9 @@ export const popupInputJob = popupTypeProfile.querySelector('.popup__input_type_
 export const profileName = document.querySelector('.profile__name');                             //
 export const profileActivity = document.querySelector('.profile__activity');                     //
 
+export const formPlace = document.forms.formPlace; // форма добавления карточки
+export const formProfile = document.forms.formProfile; //форма редактирования профиля
+export const popupSubmit = document.querySelector('.popup__submit');                              // кнопка создать/сохранить в попапе
 const profileAddButton = document.querySelector('.profile__add-button');                  // Попап "Новое место"
 export const popupTypePlace = document.querySelector('.popup_type_place');                       //
 const popupCloseButtonPlace = popupTypePlace.querySelector('.popup__close-button');       //
@@ -17,6 +21,9 @@ export const popupInputImageLink = popupTypePlace.querySelector('.popup__input_t
 export const elementsSection = document.querySelector('.elements');                              // контейнер карточек
 export const popupTypeImage = document.querySelector('.popup_type_image');                       // попап картинки
 const popupCloseButtonImage = popupTypeImage.querySelector('.popup__close-button');
+export const elementTemplate = document.querySelector('#element').content;                       // элемент темплейт карточки
+export const popupCardImage = popupTypeImage.querySelector('.popup__image');                     // картинка из карточки
+export const popupCardImageTitle = popupTypeImage.querySelector('.popup__image-title');          // заголовок карточки
 const initialCards = [
   {
     name: 'Архыз',
@@ -52,12 +59,12 @@ document.addEventListener('click', function(evt) {
   }
 })
 
-document.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Escape') {
-    closePopup(popupTypeProfile);
-    closePopup(popupTypePlace);
-    closePopup(popupTypeImage);
-  }
+popups.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+     if (evt.target.classList.contains('popup__close-button')) {
+        closePopup(popup)
+      }
+  })
 })
 
 addArrayElement(initialCards); //вызов функции добавления карточек из объекта initialCards
@@ -68,11 +75,11 @@ profileAddButton.addEventListener('click', openPlaceAddPopup);
 popupFormProfile.addEventListener('submit', handleProfileFormSubmit);
 popupFormPlace.addEventListener('submit', handleFormCreateCard);
 
-popupCloseButtonProfile.addEventListener('click', closeProfileEditPopup);
-popupCloseButtonPlace.addEventListener('click', closePlaceAddPopup);
-popupCloseButtonImage.addEventListener('click', closePopupTypeImage);
+// popupCloseButtonProfile.addEventListener('click', closeProfileEditPopup);
+// popupCloseButtonPlace.addEventListener('click', closePlaceAddPopup);
+// popupCloseButtonImage.addEventListener('click', closePopupTypeImage);
 
-const validationConfig = {
+export const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   errorClass: 'error-message_visible',

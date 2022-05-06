@@ -1,5 +1,5 @@
-import {profileName, popupTypeImage, popupTypePlace, popupTypeProfile, popupInputJob, popupInputName, profileActivity} from './index.js';
-import {openPopup, closePopup} from './utils.js';
+import {profileName, popupFormPlace, popupSubmit, popupTypeImage, popupTypePlace, popupTypeProfile, popupInputJob, popupInputName, profileActivity} from './index.js';
+import {openPopup, closePopup, resetFormPlaceButton} from './utils.js';
 
 function handleProfileFormSubmit(evt) {          // функция добавления, вводимых данных в профиль
   evt.preventDefault();
@@ -16,18 +16,20 @@ function openProfileEditPopup() {  // функция добавления дан
 
 function openPlaceAddPopup() {   // функция передачи параметра в функцию открытия попапа
   openPopup(popupTypePlace);
+  resetFormPlaceButton();
+  popupFormPlace.reset();
 }
 
-function closeProfileEditPopup() { // функция передачи параметра в функцию закрытия попапа
-  closePopup(popupTypeProfile);
-}
+// function closeProfileEditPopup() { // функция передачи параметра в функцию закрытия попапа
+//   closePopup(popupTypeProfile);
+// }
 
-function closePlaceAddPopup() {   //  --//--
-  closePopup(popupTypePlace);
-}
+// function closePlaceAddPopup() {   //  --//--
+//   closePopup(popupTypePlace);
+// }
 
-function closePopupTypeImage() {
-  closePopup(popupTypeImage);
-}
+// function closePopupTypeImage() {
+//   closePopup(popupTypeImage);
+// }
 
-export {closeProfileEditPopup, closePlaceAddPopup, closePopupTypeImage, handleProfileFormSubmit, openProfileEditPopup, openPlaceAddPopup};
+export {handleProfileFormSubmit, openProfileEditPopup, openPlaceAddPopup};
