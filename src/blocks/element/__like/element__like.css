@@ -10,8 +10,7 @@
   transition: opacity .3s linear;
   margin: 0;
   padding: 0;
-  margin-top: 30px;
-  margin-right: 20px;
+  margin: 22px 20px 0 0;
 }
 
 .element__like:hover {
